@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Get weather</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script defer src="./src/index.js"></script>
+    <title>Get weather</title>
+  </head>
+  <body>
+    <h1>Weather map</h1>
+    <form id="weather-map">
+      <div id="cname">
+        <label for="c-name">City name</label>
+        <input type="text" id="c-name-txt" name="cityName" disabled/>
+      </div>
+      <div id="cid">
+        <label for="c-id">City ID</label>
+        <input type="text" id="c-id-txt" name="cityID" disabled/>
+      </div>
+      <div id="rbtn">
+        <label for="c-name-rbtn">City name</label>
+        <input type="radio" name="city-type" id="c-name-rbtn" />
+        <label for="c-id-rbtn">City ID</label>
+        <input type="radio" name="city-type" id="c-id-rbtn" />
+      </div>
+      <div id="wdata">
+        <div>
+          <p>Temperature</p>
+          <span id="temperature"></span>
+        </div>
+        <div>
+          <p>Wind speed</p>
+          <span id="wind-speed"></span>
+        </div>
+        <div>
+          <p>Humidity</p>
+          <span id="humidity"></span>
+        </div>
+      </div>
+      <div class="btn">
+        <button>Ok</button>
+        <button>Weather</button>
+        <button type="reset">Cancel</button>
+      </div>
+    </form>
+  </body>
 </html>
