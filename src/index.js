@@ -9,7 +9,11 @@ const spanTemp = document.getElementById('temperature');
 const spanWind = document.getElementById('wind-speed');
 const spanHumidity = document.getElementById('humidity');
 
-const get = document.getElementById('get');
+const get = document.getElementById('get-btn');
+const goWeb = document.getElementById('go-site-btn');
+const clear = document.getElementById('clear-btn');
+
+// ============= Disabler unnecessary text input =============
 
 function switchType() {
   if (radioName.checked) {
@@ -28,6 +32,7 @@ radioName.addEventListener('change', switchType);
 radioId.addEventListener('change', switchType);
 
 // =============API OpenWeather=============
+
 const param = {
   url: 'https://api.openweathermap.org/data/2.5/',
   appid: '0a7384eacf0bf030169dafe3d90513f6', // It`s Sytnikov`s API
@@ -50,6 +55,7 @@ function getWeather(e) {
       return weather.json();
     })
     .then((data) => {
+      console.log(data);
       spanTemp.textContent = `${data.main.temp} C`;
       spanWind.textContent = `${data.wind.speed} m/s`;
       spanHumidity.textContent = data.main.humidity;
@@ -60,3 +66,26 @@ function getWeather(e) {
 }
 
 get.addEventListener('click', getWeather);
+
+// ============= Function go to Weather site =============
+
+function goWebSite(e) {
+  e.preventDefault();
+
+  window.open(`https://openweathermap.org/city/`, '_blank');
+}
+
+goWeb.addEventListener('click', goWebSite);
+
+// ============= Clear form by 'Cancel' button =============
+
+function clearSpan(e) {
+  e.preventDefault();
+  textName.value = '';
+  textID.value = '';
+  spanTemp.textContent = '';
+  spanWind.textContent = '';
+  spanHumidity.textContent = '';
+}
+
+clear.addEventListener('click', clearSpan);
