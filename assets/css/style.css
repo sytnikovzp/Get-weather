@@ -16,10 +16,14 @@ button {
   height: 30px;
   margin-top: 10px;
 }
+#go-site{
+  width: 150px;
+}
 input[type='text'] {
   text-align: left;
-  font-size: 25px;
+  font-size: 16px;
   min-width: 350px;
+  min-height: 35px;
 }
 label {
   width: 100px;
@@ -28,12 +32,13 @@ label {
   height: 30px;
   text-align: center;
 }
-span {
+#wdata span {
   display: inline-block;
   width: 140px;
   height: 30px;
   border: 2px solid blue;
-  font-size: 25px;
+  font-size: 16px;
+  padding: 5px;
 }
 #weather-map {
   max-width: 700px;
@@ -53,6 +58,15 @@ span {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+#city-name-block span,
+#city-id-block span {
+  display: flex;
+  flex-direction: column;
+  height: 15px;
+  font-size: 14px;
+  text-align: left;
 }
 #weather-map > #rbtn,
 #wdata {

@@ -5,12 +5,20 @@ const textID = document.getElementById('city-id-txt');
 const radioName = document.getElementById('c-name-rbtn');
 const radioId = document.getElementById('c-id-rbtn');
 
+const spanTemp = document.getElementById('temperature');
+const spanWind = document.getElementById('wind-speed');
+const spanHumidity = document.getElementById('humidity');
+
+const get = document.getElementById('get');
+
 function switchType() {
   if (radioName.checked) {
+    textID.value = '';
     textName.disabled = false;
     textID.disabled = true;
   }
   if (radioId.checked) {
+    textName.value = '';
     textName.disabled = true;
     textID.disabled = false;
   }
@@ -19,37 +27,36 @@ function switchType() {
 radioName.addEventListener('change', switchType);
 radioId.addEventListener('change', switchType);
 
-switchType();
-
 // =============API OpenWeather=============
-// const param = {
-// 	url: 'https://api.openweathermap.org/data/2.5/',
-// 	appid: '0e6d1d3bff8e0a32e113767624f5060e',
-// 	cityName: 'Dnipro',
-// 	cityId: 709930,
-// };
+const param = {
+  url: 'https://api.openweathermap.org/data/2.5/',
+  appid: '0a7384eacf0bf030169dafe3d90513f6', // It`s Sytnikov`s API
+};
 
-// function getWeather() {
-// Get weather by id
-// fetch(
-//     `${param.url}weather?id=${param.cityId}&units=metric&APPID=${param.appid}`
-// )
-// Get weather by city name
-// fetch(
-//   `${param.url}weather?q=${param.cityName}&units=metric&APPID=${param.appid}`
-// )
-//   .then((weather) => {
-//     console.log(weather);
-//     if (!weather.ok) throw new Error('Error');
-//     return weather.json();
-//   })
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
+function getWeather(e) {
+  e.preventDefault();
+  let querry;
 
-// }
+  if (radioName.checked) {
+    querry = `${param.url}weather?q=${textName.value}&units=metric&APPID=${param.appid}`;
+  }
+  if (radioId.checked) {
+    querry = `${param.url}weather?id=${textID.value}&units=metric&APPID=${param.appid}`;
+  }
 
-// getWeather();
+  fetch(querry)
+    .then((weather) => {
+      if (!weather.ok) throw new Error('Error');
+      return weather.json();
+    })
+    .then((data) => {
+      spanTemp.textContent = `${data.main.temp} C`;
+      spanWind.textContent = `${data.wind.speed} m/s`;
+      spanHumidity.textContent = data.main.humidity;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+get.addEventListener('click', getWeather);

@@ -12,15 +12,21 @@
     <form id="weather-map">
       <div id="city-name-block">
         <label for="city-name-txt">City name</label>
-        <input type="text" id="city-name-txt" name="cityName" />
+        <div>
+          <input type="text" id="city-name-txt" name="cityName" />
+          <span>Example: "Dnipro" or "Zaporizhia"</span>
+        </div>
       </div>
       <div id="city-id-block">
         <label for="city-id-txt">City ID</label>
-        <input type="text" id="city-id-txt" name="cityID" checked />
+        <div>
+          <input type="text" id="city-id-txt" name="cityID" disabled/>
+          <span>Example: "Dnipro" is "709930", "Zaporizhia" is "687700"</span>
+        </div>
       </div>
       <div id="rbtn">
         <label for="c-name-rbtn">City name</label>
-        <input type="radio" name="type" id="c-name-rbtn" />
+        <input type="radio" name="type" id="c-name-rbtn" checked/>
         <label for="c-id-rbtn">City ID</label>
         <input type="radio" name="type" id="c-id-rbtn" />
       </div>
@@ -39,8 +45,8 @@
         </div>
       </div>
       <div class="btn">
-        <button>Ok</button>
-        <button>Weather</button>
+        <button id="get">Get weather</button>
+        <button id="go-site">Go to Weather site</button>
         <button type="reset">Cancel</button>
       </div>
     </form>
