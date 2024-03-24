@@ -13,6 +13,8 @@ const get = document.getElementById('get-btn');
 const goWeb = document.getElementById('go-site-btn');
 const clear = document.getElementById('clear-btn');
 
+let getCityId;
+
 // ============= Disabler unnecessary text input =============
 
 function switchType() {
@@ -59,6 +61,8 @@ function getWeather(e) {
       spanTemp.textContent = `${data.main.temp} C`;
       spanWind.textContent = `${data.wind.speed} m/s`;
       spanHumidity.textContent = data.main.humidity;
+      getCityId = data.id;
+      goWeb.disabled = false;
     })
     .catch((error) => {
       console.log(error);
@@ -72,7 +76,7 @@ get.addEventListener('click', getWeather);
 function goWebSite(e) {
   e.preventDefault();
 
-  window.open(`https://openweathermap.org/city/`, '_blank');
+  window.open(`https://openweathermap.org/city/${getCityId}`, '_blank');
 }
 
 goWeb.addEventListener('click', goWebSite);
@@ -86,6 +90,7 @@ function clearSpan(e) {
   spanTemp.textContent = '';
   spanWind.textContent = '';
   spanHumidity.textContent = '';
+  goWeb.disabled = true;
 }
 
 clear.addEventListener('click', clearSpan);
